@@ -13,7 +13,7 @@ require_once('2db.php');
 ?>
 ```
 
-Once you have required the 2db.php file to your script you must to instance an ToDB object
+Once you have required the `2db.php` file to your script you must to instance an `ToDB` object
 
 ```
 #!php
@@ -24,7 +24,7 @@ $Database = new ToDB();
 ?>
 ```
 
-Now you must configurate the connection using the method config()
+Now you must configurate the connection using the method `config()`
 
 ```
 #!php
@@ -39,10 +39,10 @@ $Database->setup('server', 'username', 'password', 'schema', 'charset');
 
 Now you can use one of the following methods:
 
-* select()
-* insert()
-* update()
-* delete()
+* `select()`
+* `insert()`
+* `update()`
+* `delete()`
 
 ## Select() ##
 
