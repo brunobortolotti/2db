@@ -37,7 +37,7 @@ $Database->setup('server', 'username', 'password', 'schema', 'charset');
 ?>
 ```
 
-Now you can use one of the following methods:
+Now you can use one of the following methods as primary function:
 
 * `select()`
 * `insert()`
@@ -55,19 +55,6 @@ $query = $Database->select();
 
 ### Select methods ###
 
-* table()
-* field()
-* where()
-* order()
-* orWhere()
-* innerjoin()
-* leftjoin()
-* rightjoin()
-* get()
-* getAll()
-* dump()
-
-
 ```
 #!php
 <?php
@@ -75,3 +62,17 @@ $query = $Database->select()
 ;
 ?>
 ```
+
+By using the `select()` as primary function you're now able to use all of the following methods as secondary functions:
+
+* `table()`: Defines the main table you want to get data from
+* `field()`: Defines which columns you want to extract from specified table
+* `where()`: Adds conditions by gluing with `and` operators
+* `orWhere()`: Adds conditions by gluing with `or` operators
+* `order()`: Defines the ordering rules
+* `innerjoin()`
+* `leftjoin()`
+* `rightjoin()`
+* `get()`
+* `getAll()`
+* `dump()
