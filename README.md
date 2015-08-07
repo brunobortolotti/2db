@@ -1,10 +1,10 @@
 # README #
 
-2db is a php class created to make mysql queries easier. 
+2db is a php class created to make your mysql queries easier. 
 
 ### Setup ###
 
-First of all you must require the class
+First of all you must require the class file.
 
 ```
 #!php
@@ -37,6 +37,8 @@ $Database->setup('server', 'username', 'password', 'schema', 'charset');
 ?>
 ```
 
+### Primary Methods ###
+
 Now you can use one of the following methods as primary function:
 
 * `select()`
@@ -53,21 +55,51 @@ $query = $Database->select();
 ?>
 ```
 
-### Select methods ###
+### Select Secondary Methods ###
 
 ```
 #!php
 <?php
-$query = $Database->select()
-;
+$query = $Database->select();
 ?>
 ```
 
 By using the `select()` as primary function you're now able to use all of the following methods as secondary functions:
 
 * `table()`: Defines the main table you want to get data from
+
+```
+#!php
+<?php
+$query = $Database->select()
+			->table();
+?>
+```
 * `field()`: Defines which columns you want to extract from specified table
+
+```
+#!php
+<?php
+$query = $Database->select()
+			->table('user')
+			->field('id')
+			->field('user_group_id', 'group_id');
+?>
+```
+
 * `where()`: Adds conditions by gluing with `and` operators
+
+```
+#!php
+<?php
+$query = $Database->select()
+			->table('user')
+			->field('id')
+			->field('user_group_id', 'group_id')
+			->where('id', 55);
+?>
+```
+
 * `orWhere()`: Adds conditions by gluing with `or` operators
 * `order()`: Defines the ordering rules
 * `innerjoin()`
@@ -75,4 +107,4 @@ By using the `select()` as primary function you're now able to use all of the fo
 * `rightjoin()`
 * `get()`
 * `getAll()`
-* `dump()
+* `dump()`
