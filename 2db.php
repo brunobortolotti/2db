@@ -4,7 +4,7 @@ class ToDB {
 
 	private $connection;
 
-	public function setup($server, $username, $password, $schema, $charset = null){
+	public function connect($server, $username, $password, $schema, $charset = null){
 		$this->connection = new ToDBConnection(
 			$server, $username, $password, $schema, $charset
 		);
@@ -136,7 +136,7 @@ class ToDBSelect extends ToDB {
 
 class ToDBUpdate extends ToDB {
 
-	public $tables, $fields, $wheres;
+	public $table, $fields, $wheres;
 	private $builder, $connection;
 
 	public function __construct($connection){
@@ -145,7 +145,7 @@ class ToDBUpdate extends ToDB {
 	}
 
 	public function table($name, $alias=null){
-		$this->tables[] = new ToDBTable($name, $alias);
+		$this->table = new ToDBTable($name, $alias);
 		return $this;
 	}
 
@@ -178,7 +178,7 @@ class ToDBUpdate extends ToDB {
 
 class ToDBInsert extends ToDB {
 
-	public $tables, $fields;
+	public $table, $fields;
 	private $builder, $connection;
 
 	public function __construct($connection){
@@ -187,7 +187,7 @@ class ToDBInsert extends ToDB {
 	}
 
 	public function table($name, $alias=null){
-		$this->tables[] = new ToDBTable($name, $alias);
+		$this->table = new ToDBTable($name, $alias);
 		return $this;
 	}
 
@@ -210,7 +210,7 @@ class ToDBInsert extends ToDB {
 
 class ToDBDelete extends ToDB {
 
-	public $tables, $wheres;
+	public $table, $wheres;
 	private $builder, $connection;
 
 	public function __construct($connection){
@@ -219,7 +219,7 @@ class ToDBDelete extends ToDB {
 	}
 
 	public function table($name, $alias=null){
-		$this->tables[] = new ToDBTable($name, $alias);
+		$this->table = new ToDBTable($name, $alias);
 		return $this;
 	}
 
@@ -475,7 +475,7 @@ class ToDBSelectBuilder extends ToDBBuilder {
 
 class ToDBUpdateBuilder extends ToDBBuilder {
 
-	public $sql, $sqlTables = array(), $sqlFields = array(), $sqlWheres = array();
+	public $sql, $sqlTable, $sqlFields = array(), $sqlWheres = array();
 	private $queryObject = null;
 
 	public function __construct($queryObject){
@@ -485,7 +485,7 @@ class ToDBUpdateBuilder extends ToDBBuilder {
 	public function make(){
 		$qo = $this->queryObject;
 
-		$this->sqlTables = " ".$this->quot($qo->tables[0]->name)." ";
+		$this->sqlTable = " ".$this->quot($qo->table->name)." ";
 
 		if(is_array($qo->fields)){
 			foreach ($qo->fields as $field) {
@@ -503,7 +503,7 @@ class ToDBUpdateBuilder extends ToDBBuilder {
 			}
 		}
 
-		$this->sql =	"UPDATE ".$this->sqlTables." SET ".
+		$this->sql =	"UPDATE ".$this->sqlTable." SET ".
 						" ".implode(' , ', $this->sqlFields)." ".
 						"WHERE 1=1 ".implode('', $this->sqlWheres)." ";
 
@@ -516,7 +516,7 @@ class ToDBUpdateBuilder extends ToDBBuilder {
 
 class ToDBInsertBuilder extends ToDBBuilder {
 
-	public $sql, $sqlTables, $sqlFields = array(), $sqlValues = array();
+	public $sql, $sqlTable, $sqlFields = array(), $sqlValues = array();
 	private $queryObject = null;
 
 	public function __construct($queryObject){
@@ -526,7 +526,7 @@ class ToDBInsertBuilder extends ToDBBuilder {
 	public function make(){
 		$qo = $this->queryObject;
 
-		$this->sqlTables = " ".$this->quot($qo->tables[0]->name)." ";
+		$this->sqlTable = " ".$this->quot($qo->table->name)." ";
 
 		if(is_array($qo->fields)){
 			foreach ($qo->fields as $field) {
@@ -535,7 +535,7 @@ class ToDBInsertBuilder extends ToDBBuilder {
 			}
 		}
 
-		$this->sql =	"INSERT INTO  ".$this->sqlTables." ".
+		$this->sql =	"INSERT INTO  ".$this->sqlTable." ".
 						" (".implode(', ', $this->sqlFields).")  ".
 						" VALUES (".implode(', ', $this->sqlValues).") ";
 
@@ -549,7 +549,7 @@ class ToDBInsertBuilder extends ToDBBuilder {
 
 class ToDBDeleteBuilder extends ToDBBuilder {
 
-	public $sql, $sqlTables, $sqlWheres = array();
+	public $sql, $sqlTable, $sqlWheres = array();
 	private $queryObject = null;
 
 	public function __construct($queryObject){
@@ -559,7 +559,7 @@ class ToDBDeleteBuilder extends ToDBBuilder {
 	public function make(){
 		$qo = $this->queryObject;
 
-		$this->sqlTables = " ".$this->quot($qo->tables[0]->name)." ";
+		$this->sqlTable = " ".$this->quot($qo->table->name)." ";
 
 		if(is_array($qo->wheres)){
 			foreach ($qo->wheres as $where) {
@@ -570,7 +570,7 @@ class ToDBDeleteBuilder extends ToDBBuilder {
 			}
 		}
 
-		$this->sql =	"DELETE FROM ".$this->sqlTables." ".
+		$this->sql =	"DELETE FROM ".$this->sqlTable." ".
 						"WHERE 1=1 ".implode('', $this->sqlWheres)." ";
 
 		return $this->sql;
