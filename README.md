@@ -8,35 +8,37 @@ First of all you must require the class
 
 ```
 #!php
-<?
+<?php
 require_once('2db.php');
 ?>
 ```
+
 Once you have required the 2db.php file to your script you must to instance an ToDB object
 
 ```
 #!php
-<?
+<?php
 require_once('2db.php');
 
 $Database = new ToDB();
 ?>
 ```
 
+Now you can use one of the following methods:
+* select()
+* insert()
+* update()
+* delete()
+
 
 * Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
 
-### Contribution guidelines ###
 
-* Writing tests
-* Code review
-* Other guidelines
+```
+#!php
+<?php
+require_once('2db.php');
 
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
+$Database = new ToDB();
+?>
+```
