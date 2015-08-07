@@ -79,7 +79,7 @@ By using the `select()` as primary function you're now able to use all of the fo
 * `dump()`
 
 
-`table()`
+#### table()
 
 Defines the main table you want to get data from
 
@@ -91,7 +91,7 @@ $query = $Database->select()
 ?>
 ```
 
-`field()`
+#### field()
 
 Defines which columns you want to extract from specified table
 
@@ -106,7 +106,7 @@ $query = $Database->select()
 ```
 
 
-`where()`
+#### where()
 
 Adds conditions by gluing with `and` operators
 
@@ -120,4 +120,3 @@ $query = $Database->select()
 			->where('id', 55);
 ?>
 ```
-
