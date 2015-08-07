@@ -7,7 +7,6 @@
 First of all you must require the class file.
 
 ```
-#!php
 <?php
 require_once('2db.php');
 ?>
@@ -16,7 +15,6 @@ require_once('2db.php');
 Once you have required the `2db.php` file to your script you must to instance an `ToDB` object
 
 ```
-#!php
 <?php
 require_once('2db.php');
 
@@ -27,7 +25,6 @@ $Database = new ToDB();
 Now you must configurate the connection using the method `config()`
 
 ```
-#!php
 <?php
 require_once('2db.php');
 
@@ -49,7 +46,6 @@ Now you can use one of the following methods as primary function:
 #### ->select() ####
 
 ```
-#!php
 <?php
 $query = $Database->select();
 ?>
@@ -58,7 +54,6 @@ $query = $Database->select();
 ### Select Secondary Methods ###
 
 ```
-#!php
 <?php
 $query = $Database->select();
 ?>
@@ -84,7 +79,6 @@ By using the `select()` as primary function you're now able to use all of the fo
 Defines the main table you want to get data from
 
 ```
-#!php
 <?php
 $query = $Database->select()
 			->table();
@@ -96,7 +90,6 @@ $query = $Database->select()
 Defines which columns you want to extract from specified table
 
 ```
-#!php
 <?php
 $query = $Database->select()
 			->table('user')
@@ -111,7 +104,6 @@ $query = $Database->select()
 Adds conditions by gluing with `and` operators
 
 ```
-#!php
 <?php
 $query = $Database->select()
 			->table('user')
