@@ -1,4 +1,4 @@
-# 2DB README #
+# README #
 
 2db is a php class created to make mysql queries easier. 
 
@@ -24,15 +24,7 @@ $Database = new ToDB();
 ?>
 ```
 
-Now you can use one of the following methods:
-* select()
-* insert()
-* update()
-* delete()
-
-
-* Configuration
-
+Now you must configurate the connection using the method config()
 
 ```
 #!php
@@ -40,5 +32,46 @@ Now you can use one of the following methods:
 require_once('2db.php');
 
 $Database = new ToDB();
+
+$Database->setup('server', 'username', 'password', 'schema', 'charset');
+?>
+```
+
+Now you can use one of the following methods:
+
+* select()
+* insert()
+* update()
+* delete()
+
+## Select() ##
+
+```
+#!php
+<?php
+$query = $Database->select();
+?>
+```
+
+### Select methods ###
+
+* table()
+* field()
+* where()
+* order()
+* orWhere()
+* innerjoin()
+* leftjoin()
+* rightjoin()
+* get()
+* getAll()
+* dump()
+
+
+```
+#!php
+<?php
+$query = $Database->select()
+;
 ?>
 ```
