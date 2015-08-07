@@ -1,15 +1,29 @@
-# README #
-This README would normally document whatever steps are necessary to get your application up and running.
+# 2DB README #
 
-### What is this repository for? ###
+2db is a php class created to make mysql queries easier. 
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+### Setup ###
 
-### How do I get set up? ###
+First of all you must require the class
 
-* Summary of set up
+```
+#!php
+<?
+require_once('2db.php');
+?>
+```
+Once you have required the 2db.php file to your script you must to instance an ToDB object
+
+```
+#!php
+<?
+require_once('2db.php');
+
+$Database = new ToDB();
+?>
+```
+
+
 * Configuration
 * Dependencies
 * Database configuration
