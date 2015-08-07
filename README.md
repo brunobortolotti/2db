@@ -66,7 +66,22 @@ $query = $Database->select();
 
 By using the `select()` as primary function you're now able to use all of the following methods as secondary functions:
 
-* `table()`: Defines the main table you want to get data from
+* `table()`
+* `field()` 
+* `where()`
+* `orWhere()`
+* `order()`
+* `innerjoin()`
+* `leftjoin()`
+* `rightjoin()`
+* `get()`
+* `getAll()`
+* `dump()`
+
+
+`table()`
+
+Defines the main table you want to get data from
 
 ```
 #!php
@@ -75,7 +90,10 @@ $query = $Database->select()
 			->table();
 ?>
 ```
-* `field()`: Defines which columns you want to extract from specified table
+
+`field()`
+
+Defines which columns you want to extract from specified table
 
 ```
 #!php
@@ -87,7 +105,10 @@ $query = $Database->select()
 ?>
 ```
 
-* `where()`: Adds conditions by gluing with `and` operators
+
+`where()`
+
+Adds conditions by gluing with `and` operators
 
 ```
 #!php
@@ -100,11 +121,3 @@ $query = $Database->select()
 ?>
 ```
 
-* `orWhere()`: Adds conditions by gluing with `or` operators
-* `order()`: Defines the ordering rules
-* `innerjoin()`
-* `leftjoin()`
-* `rightjoin()`
-* `get()`
-* `getAll()`
-* `dump()`
